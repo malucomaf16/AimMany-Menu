@@ -97,7 +97,7 @@ local frCredits=makeTab("Credits")
 section(frCredits,"Info:")
 local creditsLabel=Instance.new("TextLabel",frCredits);creditsLabel.BackgroundTransparency=1;creditsLabel.Font=Enum.Font.Gotham;creditsLabel.TextSize=16;creditsLabel.TextColor3=C_TXT;trackLabel(creditsLabel)
 creditsLabel.TextXAlignment=Enum.TextXAlignment.Left;creditsLabel.TextYAlignment=Enum.TextYAlignment.Top;creditsLabel.TextWrapped=true;creditsLabel.Size=UDim2.new(1,0,0,120)
-creditsLabel.Text="AimMany Menu TEST\nVersion: 1.2\n\nmore updates coming soon :3"
+creditsLabel.Text="AimMany Menu TEST\nVersion: 1.3.2\n\nmore updates coming soon :3"
 
 local frMain=makeTab("Main")
 section(frMain,"Player")
