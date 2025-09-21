@@ -23,14 +23,12 @@ local ACCENT=Color3.fromRGB(150,105,255)
 local OLD_BG={Color3.fromRGB(24,24,28),Color3.fromRGB(30,30,36),Color3.fromRGB(35,35,42),Color3.fromRGB(40,40,48),Color3.fromRGB(50,50,60)}
 local OLD_SIDE={Color3.fromRGB(35,35,42),Color3.fromRGB(44,44,54),Color3.fromRGB(58,58,70)}
 local BLUES={} do local src={{10,18,28},{12,22,36},{14,26,44},{16,30,52},{18,34,60},{20,38,68},{22,42,76},{24,46,84},{26,50,92},{28,54,100},{30,60,112},{32,66,124},{34,72,136},{36,78,148},{38,84,160},{40,90,172}} for _,rgb in ipairs(src)do table.insert(BLUES,Color3.fromRGB(rgb[1],rgb[2],rgb[3])) end end
-local TXT_CHOICES={Color3.fromRGB(255,255,255),Color3.fromRGB(220,220,225),Color3.fromRGB(190,190,200),Color3.fromRGB(150,150,160),Color3.fromRGB(120,120,130),Color3.fromRGB(255,0,0),Color3.fromRGB(0,200,80),Color3.fromRGB(0,170,255),Color3.fromRGB(200,200,210),Color3.fromRGB(160,160,170)}
-local ESP_PLAYER_COLOR=Color3.fromRGB(0,170,255)
-local ESP_NPC_COLOR=Color3.fromRGB(255,120,80)
+local TXT_CHOICES={Color3.fromRGB(255,255,255),Color3.fromRGB(220,220,225),Color3.fromRGB(190,190,200),Color3.fromRGB(150,150,160),Color3.fromRGB(120,120,130),Color3.fromRGB(255,0,0),Color3.fromRGB(0,200,80),Color3.fromRGB(0,170,255),Color3.fromRGB(180,180,185)}
 
 local gui=Instance.new("ScreenGui",LP:WaitForChild("PlayerGui"));gui.Name="AM_Menu";gui.IgnoreGuiInset=true;gui.ResetOnSpawn=false;gui.ZIndexBehavior=Enum.ZIndexBehavior.Sibling
 local overlay=Instance.new("ScreenGui",LP.PlayerGui);overlay.Name="AM_Overlay";overlay.IgnoreGuiInset=true;overlay.ResetOnSpawn=false;overlay.DisplayOrder=1000
 
-local win=Instance.new("Frame",gui);win.Size=UDim2.new(0,600,0,400);win.Position=UDim2.new(0.5,-300,0.5,-200);win.BackgroundColor3=C_BG;win.BorderSizePixel=0;win.ZIndex=10;win.ClipsDescendants=true
+local win=Instance.new("Frame",gui);win.Size=UDim2.fromScale(0.52,0.56);win.Position=UDim2.fromScale(0.24,0.22);win.BackgroundColor3=C_BG;win.BorderSizePixel=0;win.ZIndex=10;win.ClipsDescendants=true
 Instance.new("UICorner",win).CornerRadius=UDim.new(0,14);local ws=Instance.new("UIStroke",win);ws.Color=C_STK;ws.Transparency=0.35
 local sh=Instance.new("ImageLabel",win);sh.BackgroundTransparency=1;sh.Image="rbxassetid://5028857084";sh.ScaleType=Enum.ScaleType.Slice;sh.SliceCenter=Rect.new(24,24,276,276);sh.Size=UDim2.fromScale(1,1);sh.Position=UDim2.fromOffset(-10,-10);sh.ImageTransparency=0.35;sh.ZIndex=9
 
@@ -40,12 +38,12 @@ local title=Instance.new("TextLabel",top);title.BackgroundTransparency=1;title.F
 local function topBtn(off,sym,name)local b=Instance.new("TextButton",top)b.Name=name;b.Text=sym;b.Font=Enum.Font.GothamBold;b.TextColor3=C_TXT;b.TextScaled=true;b.BackgroundColor3=C_SIDE;b.BorderSizePixel=0;b.AutoButtonColor=true;b.Size=UDim2.fromOffset(24,24)b.AnchorPoint=Vector2.new(1,0.5)b.Position=UDim2.new(1,-off,0.5,0)b.ZIndex=12 return b end
 local btnClose=topBtn(12,"×","Close");local btnMin=topBtn(44,"–","Min")
 
-local side=Instance.new("Frame",win);side.BackgroundColor3=C_SIDE;side.BorderSizePixel=0;side.Position=UDim2.new(0,0,0,44);side.Size=UDim2.new(0,180,1,-44);side.ZIndex=10
+local side=Instance.new("Frame",win);side.BackgroundColor3=C_SIDE;side.BorderSizePixel=0;side.Position=UDim2.new(0,0,0,44);side.Size=UDim2.new(0,210,1,-44);side.ZIndex=10
 Instance.new("UICorner",side).CornerRadius=UDim.new(0,14)
 local spad=Instance.new("UIPadding",side)spad.PaddingTop=UDim.new(0,12)spad.PaddingLeft=UDim.new(0,12)spad.PaddingRight=UDim.new(0,12)
 local sl=Instance.new("UIListLayout",side)sl.Padding=UDim.new(0,8)sl.HorizontalAlignment=Enum.HorizontalAlignment.Center
 
-local content=Instance.new("ScrollingFrame",win);content.Name="Content";content.BackgroundColor3=C_BG;content.BorderSizePixel=0;content.Position=UDim2.new(0,180,0,44);content.Size=UDim2.new(1,-180,1,-44);content.ZIndex=10
+local content=Instance.new("ScrollingFrame",win);content.Name="Content";content.BackgroundColor3=C_BG;content.BorderSizePixel=0;content.Position=UDim2.new(0,210,0,44);content.Size=UDim2.new(1,-210,1,-44);content.ZIndex=10
 content.ScrollBarThickness=6;content.AutomaticCanvasSize=Enum.AutomaticSize.Y;content.CanvasSize=UDim2.fromOffset(0,0)
 local cpad=Instance.new("UIPadding",content)cpad.PaddingTop=UDim.new(0,14)cpad.PaddingLeft=UDim.new(0,14)cpad.PaddingRight=UDim.new(0,14)cpad.PaddingBottom=UDim.new(0,14)
 
@@ -61,7 +59,7 @@ local dd=Instance.new("Frame",content)dd.BackgroundColor3=C_SIDE;dd.BorderSizePi
 local h=(#options*36)+12;dd.Size=UDim2.new(0,260,0,h);local y=6
 for _,opt in ipairs(options)do local b=Instance.new("TextButton",dd)b.Text=opt;b.Font=Enum.Font.Gotham;b.TextSize=16;b.TextColor3=C_TXT;trackLabel(b);b.BackgroundColor3=C_CARD;b.BorderSizePixel=0;b.Size=UDim2.new(1,-12,0,30);b.Position=UDim2.new(0,6,0,y)Instance.new("UICorner",b).CornerRadius=UDim.new(0,6)
 b.MouseButton1Click:Connect(function()dd:Destroy()pcall(onChoose,opt)end)y=y+36 end
-dd.Position=UDim2.new(0,anchorAbs.X,0,anchorAbs.Y+44+content.CanvasPosition.Y)return dd
+dd.Position=UDim2.new(0,anchorAbs.X,0,anchorAbs.Y+44+content.CanvasPosition.Y);return dd
 end
 
 local function cell(parent,text,rightText)
@@ -97,7 +95,7 @@ local frCredits=makeTab("Credits")
 section(frCredits,"Info:")
 local creditsLabel=Instance.new("TextLabel",frCredits);creditsLabel.BackgroundTransparency=1;creditsLabel.Font=Enum.Font.Gotham;creditsLabel.TextSize=16;creditsLabel.TextColor3=C_TXT;trackLabel(creditsLabel)
 creditsLabel.TextXAlignment=Enum.TextXAlignment.Left;creditsLabel.TextYAlignment=Enum.TextYAlignment.Top;creditsLabel.TextWrapped=true;creditsLabel.Size=UDim2.new(1,0,0,120)
-creditsLabel.Text="AimMany Menu TEST\nVersion: 1.3.2\n\nmore updates coming soon :3"
+creditsLabel.Text="AimMany Menu TEST\nVersion: 1.4.3\nmore updates coming soon :3"
 
 local frMain=makeTab("Main")
 section(frMain,"Player")
@@ -108,27 +106,12 @@ local speedIn=Instance.new("TextBox",frMain);speedIn.BackgroundColor3=C_SIDE;spe
 local jumpCell=cell(frMain,"Jump Power","50")
 local jumpIn=Instance.new("TextBox",frMain);jumpIn.BackgroundColor3=C_SIDE;jumpIn.BorderSizePixel=0;jumpIn.PlaceholderText="Value (e.g. 60)";jumpIn.PlaceholderColor3=C_MUT;jumpIn.TextColor3=C_TXT;jumpIn.Font=Enum.Font.Gotham;jumpIn.TextSize=14;jumpIn.Size=UDim2.new(1,0,0,30)Instance.new("UICorner",jumpIn).CornerRadius=UDim.new(0,8)
 
-local tpClickCell=cell(frMain,"One-Click Teleport","Off")
-local tpClickActive=false
-local mouse=LP:GetMouse()
-local function toggleTpClick(on)
-tpClickActive=on
-if on then
-local conn; conn=mouse.Button1Down:Connect(function()
-if not tpClickActive then if conn then conn:Disconnect() end return end
-local hit=mouse.Hit local pos=hit and hit.p or nil
-local ch=LP.Character local root=ch and ch:FindFirstChild("HumanoidRootPart")
-if root and pos then root.CFrame=CFrame.new(pos+Vector3.new(0,3,0)) end
-tpClickActive=false
-local btn=tpClickCell:FindFirstChild("Toggle") if btn then local fill=btn:FindFirstChild("Fill") if fill then fill.Visible=false fill.Size=UDim2.fromOffset(0,0) end end
-if conn then conn:Disconnect() end
-end)
-end
-end
+local tpClickCell=cell(frMain,"Teleport Click-Once","None")
+local tpInfo=tpClickCell:FindFirstChild("Right");if tpInfo then tpInfo.Text="Off" end
 
-local flyCell=cell(frMain,"Fly","")
-local flyRow=Instance.new("Frame",frMain)flyRow.BackgroundTransparency=1;flyRow.Size=UDim2.new(1,0,0,30)
-local flySpeedIn=Instance.new("TextBox",flyRow)flySpeedIn.BackgroundColor3=C_SIDE;flySpeedIn.BorderSizePixel=0;flySpeedIn.PlaceholderText="Fly speed (e.g. 4)";flySpeedIn.PlaceholderColor3=C_MUT;flySpeedIn.TextColor3=C_TXT;flySpeedIn.Font=Enum.Font.Gotham;flySpeedIn.TextSize=14;flySpeedIn.Text="4";flySpeedIn.Size=UDim2.new(1,0,1,0)Instance.new("UICorner",flySpeedIn).CornerRadius=UDim.new(0,8)
+local flyCell=cell(frMain,"Fly (WASD/Space/Shift)","")
+local flySpeedIn=Instance.new("TextBox",frMain)flySpeedIn.BackgroundColor3=C_SIDE;flySpeedIn.BorderSizePixel=0;flySpeedIn.PlaceholderText="Fly speed (e.g. 4)";flySpeedIn.PlaceholderColor3=C_MUT;flySpeedIn.TextColor3=C_TXT;flySpeedIn.Font=Enum.Font.Gotham;flySpeedIn.TextSize=14;flySpeedIn.Text="4";flySpeedIn.Size=UDim2.new(1,0,0,30)Instance.new("UICorner",flySpeedIn).CornerRadius=UDim.new(0,8)
+
 local noclipCell=cell(frMain,"Noclip","")
 
 local function hum()local ch=LP.Character or LP.CharacterAdded:Wait()return ch:FindFirstChildOfClass("Humanoid")end
@@ -141,10 +124,12 @@ TweenService:Create(fill,TweenInfo.new(0.12,Enum.EasingStyle.Quad,Enum.EasingDir
 if not on then task.delay(0.13,function()if fill then fill.Visible=false end end)end
 if onToggleMap[btn] then onToggleMap[btn](on) end end)end
 
-bindToggle(tpClickCell,function(on)toggleTpClick(on)end)
-
-bindToggle(speedCell,function(on)local h=hum()if not h then return end local n=tonumber(speedIn.Text)or 16 h.WalkSpeed=on and n or 16 end)
-speedIn.FocusLost:Connect(function(e)if e then local h=hum()if h then local n=tonumber(speedIn.Text)if n then h.WalkSpeed=n end end end end)
+local speedEnforceConn
+local speedToggleOn=false
+local function stopSpeedLoop()if speedEnforceConn then speedEnforceConn:Disconnect()speedEnforceConn=nil end end
+local function startSpeedLoop()stopSpeedLoop()speedEnforceConn=RunService.Heartbeat:Connect(function()local h=hum()if h and speedToggleOn then local target=tonumber(speedIn.Text)or 16 if math.abs(h.WalkSpeed-target)>0.1 then h.WalkSpeed=target end end end)end
+bindToggle(speedCell,function(on)speedToggleOn=on local h=hum()if not h then return end local n=tonumber(speedIn.Text)or 16 if on then h.WalkSpeed=n startSpeedLoop() else stopSpeedLoop() h.WalkSpeed=16 end end)
+speedIn.FocusLost:Connect(function(enter)if enter and speedToggleOn then local h=hum()if h then local n=tonumber(speedIn.Text)or 16 h.WalkSpeed=n end end end)
 
 bindToggle(jumpCell,function(on)local h=hum()if not h then return end local n=tonumber(jumpIn.Text)or 50 pcall(function()h.UseJumpPower=true end)h.JumpPower=on and n or 50 pcall(function()h.JumpHeight=on and math.clamp(n/3,2,25) or 7.2 end)end)
 jumpIn.FocusLost:Connect(function(e)if e then local h=hum()if not h then return end local n=tonumber(jumpIn.Text)if not n then return end pcall(function()h.UseJumpPower=true end)h.JumpPower=n pcall(function()h.JumpHeight=math.clamp(n/3,2,25)end)end end)
@@ -161,146 +146,89 @@ if UIS:IsKeyDown(Enum.KeyCode.Space)then dir+=Vector3.new(0,1,0)end;if UIS:IsKey
 if dir.Magnitude>0 then dir=dir.Unit*spd*30 else dir=Vector3.new()end;flyBV.Velocity=dir end)end)
 
 local noclipConn
-bindToggle(noclipCell,function(on)if noclipConn then noclipConn:Disconnect()noclipConn=nil end;if on then
-noclipConn=RunService.Stepped:Connect(function()
-local ch=LP.Character if not ch then return end
-for _,p in ipairs(ch:GetDescendants())do if p:IsA("BasePart")then p.CanCollide=false p.CanTouch=false end end
+local function noclipStep()local ch=LP.Character if not ch then return end for _,p in ipairs(ch:GetDescendants())do if p:IsA("BasePart") then p.CanCollide=false p.CanQuery=false p.CanTouch=false end end end
+bindToggle(noclipCell,function(on)if noclipConn then noclipConn:Disconnect()noclipConn=nil end if on then noclipConn=RunService.Stepped:Connect(noclipStep) else local ch=LP.Character if ch then for _,p in ipairs(ch:GetDescendants())do if p:IsA("BasePart")then p.CanCollide=true p.CanQuery=true p.CanTouch=true end end end end end)
+
+local clickConn
+bindToggle(tpClickCell,function(on)
+if clickConn then clickConn:Disconnect() clickConn=nil end
+if on then
+if tpInfo then tpInfo.Text="Armed: click once" end
+local mouse=LP:GetMouse()
+clickConn=mouse.Button1Down:Connect(function()
+local pos=mouse.Hit and mouse.Hit.p
+local r=hrp()
+if pos and r then r.CFrame=CFrame.new(pos+Vector3.new(0,3,0)) end
+if tpClickCell.Toggle and tpClickCell.Toggle.Fill then tpClickCell.Toggle.Fill.Visible=false tpClickCell.Toggle.Fill.Size=UDim2.fromOffset(0,0) end
+if tpInfo then tpInfo.Text="Off" end
+if clickConn then clickConn:Disconnect() clickConn=nil end
 end)
 else
-local ch=LP.Character if ch then for _,p in ipairs(ch:GetDescendants())do if p:IsA("BasePart")then p.CanCollide=true end end end
-end end)
+if tpInfo then tpInfo.Text="Off" end
+end
+end)
 
-local frESPAim=makeTab("ESP/Aim")
-section(frESPAim,"ESP")
+local frESP=makeTab("ESP/Aim")
+section(frESP,"ESP")
 
-local espMaster=cell(frESPAim,"Toggle ESP","")
-local espName=cell(frESPAim,"Show Name","")
-local espHP=cell(frESPAim,"Show Health","")
-local espDist=cell(frESPAim,"Show Distance","")
-local espTeam=cell(frESPAim,"Team Check","")
-local espNPC=cell(frESPAim,"Include NPCs","")
-local espPlayers=cell(frESPAim,"Include Players","")
+local espMaster=cell(frESP,"Toggle ESP","")
+local espName=cell(frESP,"Show Name","")
+local espHP=cell(frESP,"Show Health","")
+local espDist=cell(frESP,"Show Distance","")
+local espNPC=cell(frESP,"Include NPCs","")
+local espPlayers=cell(frESP,"Include Players","")
+local espTeam=cell(frESP,"Team Check","")
 
-section(frESPAim,"ESP Colors")
-local rowESP=Instance.new("Frame",frESPAim)rowESP.BackgroundTransparency=1;rowESP.Size=UDim2.new(1,0,0,44)
-local function makeDot(parent,x,col,cb)local b=Instance.new("TextButton",parent)b.Text="" b.AutoButtonColor=true b.BackgroundColor3=col b.BorderSizePixel=0 b.Size=UDim2.fromOffset(28,28) b.Position=UDim2.fromOffset(x,8) Instance.new("UICorner",b).CornerRadius=UDim.new(1,0) b.MouseButton1Click:Connect(function()cb(col)end)end
-makeDot(rowESP,0,ESP_PLAYER_COLOR,function(c)ESP_PLAYER_COLOR=c end)
-makeDot(rowESP,34,ESP_NPC_COLOR,function(c)ESP_NPC_COLOR=c end)
-makeDot(rowESP,68,Color3.fromRGB(255,64,128),function(c)ESP_PLAYER_COLOR=c end)
-makeDot(rowESP,102,Color3.fromRGB(80,220,120),function(c)ESP_NPC_COLOR=c end)
-makeDot(rowESP,136,Color3.fromRGB(255,220,60),function(c)ESP_PLAYER_COLOR=c end)
-makeDot(rowESP,170,Color3.fromRGB(200,200,210),function(c)ESP_NPC_COLOR=c end)
+section(frESP,"ESP Colors")
+local espColorPlayers=Color3.fromRGB(0,170,255)
+local espColorNPC=Color3.fromRGB(255,120,80)
+local rowESP=Instance.new("Frame",frESP)rowESP.BackgroundTransparency=1;rowESP.Size=UDim2.new(1,0,0,40)
+local function dotRow(parent,x,col,apply)local b=Instance.new("TextButton",parent)b.Text="";b.AutoButtonColor=true;b.BackgroundColor3=col;b.BorderSizePixel=0;b.Size=UDim2.fromOffset(28,28);b.Position=UDim2.fromOffset(x,6)Instance.new("UICorner",b).CornerRadius=UDim.new(1,0)b.MouseButton1Click:Connect(function()apply(col)end)end
+local pal={Color3.fromRGB(0,170,255),Color3.fromRGB(255,120,80),Color3.fromRGB(255,220,60),Color3.fromRGB(80,220,120),Color3.fromRGB(200,200,210),Color3.fromRGB(255,64,128),Color3.fromRGB(150,105,255)}
+local x=0 for _,c in ipairs(pal)do dotRow(rowESP,x,c,function(col)espColorPlayers=col end) x=x+34 end
+local rowESP2=Instance.new("Frame",frESP)rowESP2.BackgroundTransparency=1;rowESP2.Size=UDim2.new(1,0,0,40)
+local x2=0 for _,c in ipairs(pal)do dotRow(rowESP2,x2,c,function(col)espColorNPC=col end) x2=x2+34 end
 
-section(frESPAim,"Aimbot")
-local aimbotOnCell=cell(frESPAim,"Aimbot ON","")
-local aimTeam=cell(frESPAim,"Team Check","")
-local aimTargetButton,aimRight=listCell(frESPAim,"Aimbot Target","Head")
+section(frESP,"Aim")
+local aimbotOnCell=cell(frESP,"Aimbot ON","")
+local aimTeam=cell(frESP,"Aimbot Team Check","")
+local aimTargetButton,aimRight=listCell(frESP,"Aimbot Target","Head")
 local aimOn=false
 local aimTargetName="Head"
 local aimTeamCheck=false
 
-local espOn=false
-local showName=false
-local showHP=false
-local showDist=false
-local teamCheck=false
-local includeNPC=false
-local includePlayers=true
-local highlights={}
-local nameBoards={}
+aimTargetButton.MouseButton1Click:Connect(function()
+local abs=aimTargetButton.AbsolutePosition-content.AbsolutePosition
+makeDropdown(Vector2.new(abs.X,abs.Y),{"Head","Body","Foot"},function(opt)
+if opt=="Body"then aimTargetName="HumanoidRootPart"aimRight.Text="Body" elseif opt=="Foot"then aimTargetName="RightFoot"aimRight.Text="Foot" else aimTargetName="Head"aimRight.Text="Head" end
+end)
+end)
 
-local function getTeam(plr)return plr and plr.Team or nil end
-local function isSameTeam(a,b)local ta=getTeam(a)local tb=getTeam(b)if not ta or not tb then return false end return ta==tb end
-
-local function clearESP()
-for k,h in pairs(highlights)do if h and h.Parent then h:Destroy() end highlights[k]=nil end
-for k,g in pairs(nameBoards)do if g and g.Parent then g:Destroy() end nameBoards[k]=nil end
+local function sameTeam(a,b)
+if not a or not b then return false end
+if a.Team and b.Team then return a.Team==b.Team else return false end
 end
 
-local function headOrRoot(m)return m:FindFirstChild("Head") or m:FindFirstChild("HumanoidRootPart") or m:FindFirstChildWhichIsA("BasePart") end
-
-local function attachHighlight(model,label,isPlayer,color)
-if not model then return end
-local root=headOrRoot(model) if not root then return end
-local key=model
-local h=highlights[key]
-if not h then h=Instance.new("Highlight") h.Adornee=model h.DepthMode=Enum.HighlightDepthMode.AlwaysOnTop h.FillTransparency=1 h.OutlineTransparency=0 h.Parent=overlay highlights[key]=h end
-h.OutlineColor=color
-if showName or showHP or showDist then
-local bg=nameBoards[key]
-if not bg then
-bg=Instance.new("BillboardGui",overlay) bg.AlwaysOnTop=true bg.Size=UDim2.fromOffset(260,36) bg.StudsOffset=Vector3.new(0,2.6,0) bg.Adornee=root
-local t=Instance.new("TextLabel",bg) t.Name="L" t.BackgroundTransparency=1 t.Font=Enum.Font.GothamBold t.TextSize=16 t.TextColor3=color t.Text="" t.Size=UDim2.fromScale(1,1)
-nameBoards[key]=bg
-else
-bg.Adornee=root
-end
-local txt=label or ""
-if showDist then local me=hrp() if me then local d=(root.Position-me.Position).Magnitude txt=txt..string.format(" [%.0f]",d) end end
-if showHP then local hmd=model:FindFirstChildOfClass("Humanoid") if hmd then txt=txt..string.format(" (%d HP)",math.floor(hmd.Health)) end end
-bg.L.Text=txt
-bg.L.TextColor3=color
-else
-local bg=nameBoards[key] if bg then bg:Destroy() nameBoards[key]=nil end
-end
-end
-
-local lastScan=0
-local function scanESP()
-if not espOn then clearESP() return end
-local now=time()
-if now-lastScan<0.15 then return end
-lastScan=now
-for _,p in ipairs(Players:GetPlayers())do
-if p~=LP and includePlayers and p.Character and p.Character:FindFirstChildOfClass("Humanoid") then
-if teamCheck and isSameTeam(LP,p) then
-local key=p.Character
-local hh=highlights[key] if hh then hh:Destroy() highlights[key]=nil end
-local nb=nameBoards[key] if nb then nb:Destroy() nameBoards[key]=nil end
-else
-attachHighlight(p.Character,showName and p.Name or "",true,ESP_PLAYER_COLOR)
-end
-end
-end
-if includeNPC then
-for _,m in ipairs(workspace:GetDescendants())do
-if m:IsA("Model") and m:FindFirstChildOfClass("Humanoid") and not Players:GetPlayerFromCharacter(m) then
-attachHighlight(m,showName and m.Name or "",false,ESP_NPC_COLOR)
-end
-end
-end
-end
-
-bindToggle(espMaster,function(on)espOn=on if not on then clearESP() end end)
-bindToggle(espName,function(v)showName=v end)
-bindToggle(espHP,function(v)showHP=v end)
-bindToggle(espDist,function(v)showDist=v end)
-bindToggle(espTeam,function(v)teamCheck=v end)
-bindToggle(espNPC,function(v)includeNPC=v end)
-bindToggle(espPlayers,function(v)includePlayers=v end)
-
-local function targetsForAim()
-local t={}
-if includePlayers then
+local function gatherTargets(doPlayers,doNPC)
+local list={}
+if doPlayers then
 for _,p in ipairs(Players:GetPlayers())do
 if p~=LP and p.Character and p.Character:FindFirstChildOfClass("Humanoid") then
-if not aimTeamCheck or not isSameTeam(LP,p) then table.insert(t,p.Character) end
+if (not aimTeamCheck) or (not sameTeam(LP,p)) then table.insert(list,p.Character) end
 end
 end
 end
-if includeNPC then
+if doNPC then
 for _,m in ipairs(workspace:GetDescendants())do
-if m:IsA("Model") and m:FindFirstChildOfClass("Humanoid") and not Players:GetPlayerFromCharacter(m) then
-table.insert(t,m)
+if m:IsA("Model")and m:FindFirstChildOfClass("Humanoid")and not Players:GetPlayerFromCharacter(m)then table.insert(list,m) end
 end
 end
-end
-return t
+return list
 end
 
-local function nearestTarget()
+local function nearestTarget(doPlayers,doNPC)
 local bestPart local bestD=math.huge
-for _,char in ipairs(targetsForAim())do
+for _,char in ipairs(gatherTargets(doPlayers,doNPC))do
 local part=char:FindFirstChild(aimTargetName) or char:FindFirstChild("Head") or char:FindFirstChild("HumanoidRootPart")
 if part then
 local v,on=Camera:WorldToViewportPoint(part.Position)
@@ -315,10 +243,19 @@ return bestPart
 end
 
 local aimConn
-local function setAimbot(on)if aimConn then aimConn:Disconnect() aimConn=nil end if not on then return end
+local includePlayers=false
+local includeNPC=false
+local espOn=false
+local wantName=false
+local wantHP=false
+local wantDist=false
+local teamCheck=false
+
+bindToggle(aimbotOnCell,function(on)aimOn=on if aimConn then aimConn:Disconnect()aimConn=nil end
+if on then
 aimConn=RunService.RenderStepped:Connect(function()
 if UIS:IsMouseButtonPressed(Enum.UserInputType.MouseButton2) then
-local part=nearestTarget()
+local part=nearestTarget(includePlayers,includeNPC)
 if part then
 local dir=(part.Position-Camera.CFrame.Position).Unit
 Camera.CFrame=CFrame.new(Camera.CFrame.Position,Camera.CFrame.Position+dir)
@@ -326,25 +263,67 @@ end
 end
 end)
 end
-
-bindToggle(aimbotOnCell,function(on)aimOn=on setAimbot(on)end)
-bindToggle(aimTeam,function(v)aimTeamCheck=v end)
-aimTargetButton.MouseButton1Click:Connect(function()local abs=aimTargetButton.AbsolutePosition-content.AbsolutePosition
-makeDropdown(Vector2.new(abs.X,abs.Y),{"Head","Body","Foot"},function(opt)if opt=="Body"then aimTargetName="HumanoidRootPart"aimRight.Text="Body" elseif opt=="Foot"then aimTargetName="RightFoot"aimRight.Text="Foot" else aimTargetName="Head"aimRight.Text="Head" end end)end)
-
-RunService.RenderStepped:Connect(function()
-if espOn then scanESP() end
-for _,p in pairs(highlights)do if p then p.OutlineColor=p.Adornee and Players:GetPlayerFromCharacter(p.Adornee) and ESP_PLAYER_COLOR or ESP_NPC_COLOR end end
-for _,bg in pairs(nameBoards)do if bg and bg:FindFirstChild("L") then local isPlayer=Players:GetPlayerFromCharacter(bg.Adornee and bg.Adornee.Parent) or Players:GetPlayerFromCharacter(bg.Adornee) bg.L.TextColor3=isPlayer and ESP_PLAYER_COLOR or ESP_NPC_COLOR end end
 end)
+bindToggle(aimTeam,function(on)aimTeamCheck=on end)
 
-Players.PlayerRemoving:Connect(function(p)
-local ch=p.Character
-if ch then
-if highlights[ch] then highlights[ch]:Destroy() highlights[ch]=nil end
-if nameBoards[ch] then nameBoards[ch]:Destroy() nameBoards[ch]=nil end
+local highlights={}
+local nameBoards={}
+local function clearESP()for k,h in pairs(highlights)do if h and h.Parent then h:Destroy() end end for k,g in pairs(nameBoards)do if g and g.Parent then g:Destroy() end end table.clear(highlights) table.clear(nameBoards) end
+local function headOrRoot(m)return m:FindFirstChild("Head") or m:FindFirstChild("HumanoidRootPart") or m:FindFirstChildWhichIsA("BasePart") end
+local function attachHL(char,isPlayer,labelTxt)
+local col=isPlayer and espColorPlayers or espColorNPC
+local h=highlights[char]
+if not h then h=Instance.new("Highlight")h.Adornee=char h.DepthMode=Enum.HighlightDepthMode.AlwaysOnTop h.FillTransparency=1 h.OutlineTransparency=0 h.Parent=overlay highlights[char]=h end
+h.OutlineColor=col
+if wantName or wantHP or wantDist then
+local root=headOrRoot(char); if not root then return end
+local bg=nameBoards[char]
+if not bg then
+bg=Instance.new("BillboardGui",overlay)bg.AlwaysOnTop=true bg.Size=UDim2.fromOffset(260,36)bg.StudsOffset=Vector3.new(0,2.6,0)bg.Adornee=root
+local t=Instance.new("TextLabel",bg)t.Name="L" t.BackgroundTransparency=1 t.Font=Enum.Font.GothamBold t.TextSize=16 t.TextColor3=col t.Text="" t.Size=UDim2.fromScale(1,1)
+nameBoards[char]=bg
+else
+bg.Adornee=root
 end
-end)
+local txt=labelTxt or ""
+if wantDist then local me=hrp() if me and root then local d=(root.Position-me.Position).Magnitude txt=txt..string.format(" [%.0f]",d) end end
+if wantHP then local hm=char:FindFirstChildOfClass("Humanoid") if hm then txt=txt..string.format(" (%d HP)",math.floor(hm.Health)) end end
+bg.L.Text=txt
+bg.L.TextColor3=col
+else
+local bg=nameBoards[char]; if bg then bg:Destroy() nameBoards[char]=nil end
+end
+end
+
+local function scanESP()
+if not espOn then clearESP() return end
+if includePlayers then
+for _,p in ipairs(Players:GetPlayers())do
+if p~=LP and p.Character and p.Character:FindFirstChildOfClass("Humanoid") then
+if (not teamCheck) or (not sameTeam(LP,p)) then
+attachHL(p.Character,true, wantName and p.Name or "")
+end
+end
+end
+end
+if includeNPC then
+for _,m in ipairs(workspace:GetDescendants())do
+if m:IsA("Model") and m:FindFirstChildOfClass("Humanoid") and not Players:GetPlayerFromCharacter(m) then
+attachHL(m,false, wantName and m.Name or "")
+end
+end
+end
+end
+
+bindToggle(espMaster,function(on)espOn=on if not on then clearESP() end end)
+bindToggle(espName,function(v)wantName=v end)
+bindToggle(espHP,function(v)wantHP=v end)
+bindToggle(espDist,function(v)wantDist=v end)
+bindToggle(espNPC,function(v)includeNPC=v end)
+bindToggle(espPlayers,function(v)includePlayers=v end)
+bindToggle(espTeam,function(v)teamCheck=v end)
+
+RunService.RenderStepped:Connect(function()if espOn then scanESP() end end)
 
 local frConfig=makeTab("Config")
 section(frConfig,"Performance")
@@ -352,6 +331,7 @@ local fogCell=cell(frConfig,"Remove Fog","")
 local grassCell=cell(frConfig,"Remove Vegetation (visual)","")
 local alCell=cell(frConfig,"Anti-Lag (disable env light)","")
 local shadowsCell=cell(frConfig,"Remove Shadows","")
+local fullbrightCell=cell(frConfig,"NightVision (Fullbright)","")
 
 local meshButton,meshRight=listCell(frConfig,"Mesh Quality","Auto")
 local meshMap={["Auto"]="Automatic",["Very high"]="Precise",["High"]="Precise",["Medium"]="Automatic",["Low"]="Performance",["Very low"]="Performance"}
@@ -373,7 +353,6 @@ local function nightVision(on)if on then local cc=ensureCC()cc.Brightness=0.15 c
 setProp(Lighting,"Brightness",2.2)setProp(Lighting,"Ambient",Color3.new(1,1,1))setProp(Lighting,"OutdoorAmbient",Color3.new(1,1,1))
 setProp(Lighting,"ClockTime",14)setProp(Lighting,"ColorShift_Top",Color3.new(1,1,1))setProp(Lighting,"ColorShift_Bottom",Color3.new(1,1,1))setFog(true)
 else for k,v in pairs(savedBright)do if v~=nil then setProp(Lighting,k,v)end end if savedAtmos then savedAtmos.Parent=Lighting end local cc=effFolder:FindFirstChildOfClass("ColorCorrectionEffect")if cc then cc:Destroy()end end end
-local fullbrightCell=cell(frConfig,"NightVision (Fullbright)","")
 bindToggle(fogCell,setFog)bindToggle(alCell,setAntiLag)bindToggle(shadowsCell,setShadows)bindToggle(fullbrightCell,nightVision)
 
 local _veg_on=false
@@ -393,26 +372,22 @@ local rowPal=Instance.new("Frame",frConfig)rowPal.BackgroundTransparency=1;rowPa
 local function refreshTheme()win.BackgroundColor3=C_BG;content.BackgroundColor3=C_BG;top.BackgroundColor3=C_SIDE;side.BackgroundColor3=C_SIDE end
 local function uiDot(x,y,col,apply)local b=Instance.new("TextButton",rowPal)b.Text="";b.AutoButtonColor=true;b.BackgroundColor3=col;b.BorderSizePixel=0;b.Size=UDim2.fromOffset(22,22);b.Position=UDim2.fromOffset(x,y);b.ZIndex=21;Instance.new("UICorner",b).CornerRadius=UDim.new(1,0)
 b.MouseButton1Click:Connect(function()pcall(apply,col)refreshTheme()end)end
-local x=0 for _,c in ipairs(OLD_BG)do uiDot(x,6,c,function(col)C_BG=col end) x=x+26 end for _,c in ipairs(BLUES)do uiDot(x,6,c,function(col)C_BG=col end) x=x+26 end
-x=0 for _,c in ipairs(OLD_SIDE)do uiDot(x,40,c,function(col)C_SIDE=col end) x=x+26 end for _,c in ipairs(BLUES)do uiDot(x,40,c,function(col)C_SIDE=col end) x=x+26 end
-x=0 for _,c in ipairs(OLD_BG)do uiDot(x,74,c,function(col)C_CARD=col end) x=x+26 end for _,c in ipairs(BLUES)do uiDot(x,74,c,function(col)C_CARD=col end) x=x+26 end
+local xbg=0 for _,c in ipairs(OLD_BG)do uiDot(xbg,6,c,function(col)C_BG=col end) xbg=xbg+26 end for _,c in ipairs(BLUES)do uiDot(xbg,6,c,function(col)C_BG=col end) xbg=xbg+26 end
+local xsd=0 for _,c in ipairs(OLD_SIDE)do uiDot(xsd,40,c,function(col)C_SIDE=col end) xsd=xsd+26 end for _,c in ipairs(BLUES)do uiDot(xsd,40,c,function(col)C_SIDE=col end) xsd=xsd+26 end
+local xcd=0 for _,c in ipairs(OLD_BG)do uiDot(xcd,74,c,function(col)C_CARD=col end) xcd=xcd+26 end for _,c in ipairs(BLUES)do uiDot(xcd,74,c,function(col)C_CARD=col end) xcd=xcd+26 end
 
 local resetBtn=Instance.new("TextButton",rowPal)resetBtn.Text="Reset GUI (full)";resetBtn.Font=Enum.Font.GothamBold;resetBtn.TextSize=16;resetBtn.TextColor3=C_TXT;resetBtn.BackgroundColor3=C_CARD;resetBtn.BorderSizePixel=0;resetBtn.Size=UDim2.fromOffset(160,32);resetBtn.Position=UDim2.fromOffset(0,108)Instance.new("UICorner",resetBtn).CornerRadius=UDim.new(0,8)
-
-section(frConfig,"Text color")
-local rowTxt=Instance.new("Frame",frConfig)rowTxt.BackgroundTransparency=1;rowTxt.Size=UDim2.new(1,0,0,36)
-for i,c in ipairs(TXT_CHOICES)do local b=Instance.new("TextButton",rowTxt)b.Text="";b.AutoButtonColor=true;b.BackgroundColor3=c;b.BorderSizePixel=0;b.Size=UDim2.fromOffset(28,28);b.Position=UDim2.fromOffset((i-1)*34,4)Instance.new("UICorner",b).CornerRadius=UDim.new(1,0)
-b.MouseButton1Click:Connect(function()C_TXT=c;title.TextColor3=c;for _,lbl in ipairs(recolorLabels)do if lbl and lbl.Parent then lbl.TextColor3=c end end end)end
 
 local function resetAll()
 C_BG=DEF_BG;C_SIDE=DEF_SIDE;C_CARD=DEF_CARD;C_TXT=DEF_TXT;refreshTheme();title.TextColor3=C_TXT;for _,lbl in ipairs(recolorLabels)do if lbl and lbl.Parent then lbl.TextColor3=C_TXT end end
 for _,fr in ipairs(content:GetChildren())do if fr:IsA("Frame")then for _,cellFrame in ipairs(fr:GetDescendants())do if cellFrame:IsA("TextButton") and cellFrame.Name=="Toggle" then local fill=cellFrame:FindFirstChild("Fill") if fill then fill.Visible=false fill.Size=UDim2.fromOffset(0,0) end end end end end
-if flyConn then flyConn:Disconnect()flyConn=nil end if flyBG then flyBG:Destroy() flyBG=nil end if flyBV then flyBV:Destroy() flyBV=nil end local h=hum() if h then h.WalkSpeed=16 pcall(function()h.UseJumpPower=true end) h.JumpPower=50 end
+if speedEnforceConn then speedEnforceConn:Disconnect() speedEnforceConn=nil end speedToggleOn=false
+if flyConn then flyConn:Disconnect()flyConn=nil end if flyBG then flyBG:Destroy() flyBG=nil end if flyBV then flyBV:Destroy() flyBV=nil end
+if noclipConn then noclipConn:Disconnect() noclipConn=nil end
+local h=hum() if h then h.WalkSpeed=16 pcall(function()h.UseJumpPower=true end) h.JumpPower=50 end
 applyVegetation(false);setFog(false);setAntiLag(false);setShadows(false);nightVision(false)
-clearESP();espOn=false;showName=false;showHP=false;showDist=false;teamCheck=false;includeNPC=false;includePlayers=true
-aimOn=false;aimTeamCheck=false;setAimbot(false);aimTargetName="Head";aimRight.Text="Head"
-speedIn.Text="";jumpIn.Text="";flySpeedIn.Text="4";meshRight.Text="Auto";applyMesh("Auto")
-tpClickActive=false
+clearESP();espOn=false;wantName=false;wantHP=false;wantDist=false;includeNPC=false;includePlayers=false;teamCheck=false;aimOn=false;aimTeamCheck=false
+speedIn.Text="";jumpIn.Text="";meshRight.Text="Auto";applyMesh("Auto")
 end
 resetBtn.MouseButton1Click:Connect(resetAll)
 
@@ -420,14 +395,37 @@ for _,btn in pairs(buttons)do btn.MouseButton1Click:Connect(function()selectTab(
 selectTab(buttons["Credits"])
 
 local dragging=false;local startPos;local dragStart
-local function updateDrag(i)local d=i.Position-dragStart win.Position=UDim2.new(0, win.Position.X.Offset + d.X, 0, win.Position.Y.Offset + d.Y) dragStart=i.Position end
+local function updateDrag(i)local d=i.Position-dragStart win.Position=UDim2.new(startPos.X.Scale,startPos.X.Offset+d.X,startPos.Y.Scale,startPos.Y.Offset+d.Y)end
 top.InputBegan:Connect(function(i)if i.UserInputType==Enum.UserInputType.MouseButton1 or i.UserInputType==Enum.UserInputType.Touch then dragging=true dragStart=i.Position startPos=win.Position end end)
 top.InputEnded:Connect(function(i)if i.UserInputType==Enum.UserInputType.MouseButton1 or i.UserInputType==Enum.UserInputType.Touch then dragging=false end end)
 UIS.InputChanged:Connect(function(i)if dragging and(i.UserInputType==Enum.UserInputType.MouseMovement or i.UserInputType==Enum.UserInputType.Touch)then updateDrag(i)end end)
 
 local minimized=false
-btnMin.MouseButton1Click:Connect(function()minimized=not minimized local target=minimized and UDim2.new(0,600,0,44)or UDim2.new(0,600,0,400)
-TweenService:Create(win,TweenInfo.new(0.2,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{Size=target}):Play()side.Visible=not minimized content.Visible=not minimized end)
-local reopen=Instance.new("TextButton",gui)reopen.Text="AM";reopen.Font=Enum.Font.GothamBold;reopen.TextSize=14;reopen.TextColor3=C_TXT;reopen.BackgroundColor3=C_SIDE;reopen.BorderSizePixel=0;reopen.Size=UDim2.fromOffset(40,40);reopen.Position=UDim2.new(0,16,1,-56);reopen.Visible=false Instance.new("UICorner",reopen).CornerRadius=UDim.new(1,0)
-btnClose.MouseButton1Click:Connect(function()win.Visible=false reopen.Visible=true end)
-reopen.MouseButton1Click:Connect(function()reopen.Visible=false win.Visible=true end)
+btnMin.MouseButton1Click:Connect(function()
+minimized=not minimized
+local target=minimized and UDim2.new(win.Size.X.Scale,win.Size.X.Offset,0,44)or UDim2.fromScale(0.52,0.56)
+TweenService:Create(win,TweenInfo.new(0.2,Enum.EasingStyle.Quad,Enum.EasingDirection.Out),{Size=target}):Play()
+side.Visible=not minimized
+content.Visible=not minimized
+end)
+
+local reopen=Instance.new("TextButton",gui)
+reopen.Text="AM"
+reopen.Font=Enum.Font.GothamBold
+reopen.TextSize=14
+reopen.TextColor3=C_TXT
+reopen.BackgroundColor3=C_SIDE
+reopen.BorderSizePixel=0
+reopen.Size=UDim2.fromOffset(40,40)
+reopen.Position=UDim2.new(0,16,1,-56)
+reopen.Visible=false
+Instance.new("UICorner",reopen).CornerRadius=UDim.new(1,0)
+
+btnClose.MouseButton1Click:Connect(function()
+win.Visible=false
+reopen.Visible=true
+end)
+reopen.MouseButton1Click:Connect(function()
+reopen.Visible=false
+win.Visible=true
+end)
